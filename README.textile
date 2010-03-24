@@ -1,0 +1,3 @@
+h1. About
+
+Currently this is just a placeholder, but in the future you can expect here a framework-agnostic template inheritance implementation from Rango.
