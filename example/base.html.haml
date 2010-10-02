@@ -1,0 +1,31 @@
+!!! 5
+
+/ Why should be poor templates so low-level?
+/ Even they deserve their Kernel#require!
+- includes "shared/google_analytics.html"
+
+%html
+  %head
+    / This is a great fun, the content for the block value
+    / can be just anything, not just some dumb string.
+    / The default value is there just in case that no
+    / scripts would be provided in children templates.
+    - block(:scripts, Array.new).each do |script|
+      %script{src: "/scripts/#{script}"}
+  %body
+    / Just to make sure that the default value for
+    / method works (as defined in example.rb).
+    %form{action: "/search"}
+
+    = block(:google_analytics)
+    = block(:main) do
+      / This is default content for the 'main' block.
+      / In case that we wouldn't fill in the block in
+      / any of child templates, the default content
+      / would be rendered. If we fill in the block,
+      / the default content is ignored.
+
+      / We can use either block(name, content)
+      / or block(name) { content }.
+
+      No content yet.

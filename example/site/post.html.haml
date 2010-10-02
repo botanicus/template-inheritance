@@ -1,0 +1,17 @@
+/ Paths
+
+/ ./base.html: Find template base.html in the same directory as current template.
+/ ../base.html: Find template base.html in parent directory of current template.
+
+/ base.html: find template base.html in TemplateInheritance::Template.paths array.
+/   The lookup works same as Ruby's require lookup, it's basically
+/   TemplateInheritance::Template.paths.find { |dir| File.join(dir, template_name) }
+- extends "./base.html"
+
+- block(:scripts, ["post.js"])
+
+- block(:post) do
+  %h2= post.title
+  %p= post.content
+
+  = partial "./wtf", local: true

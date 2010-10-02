@@ -1,0 +1,38 @@
+/ Extends means "use this template as a layout". Of course
+/ as this is template inheritance, the layout can have its
+/ own layout which can have its own layout etc, there's no
+/ restriction.
+
+/ The right fun starts with conditional extends, for example
+/ extends "base.html" unless request.ajax? (works in Rango)
+/ So in case of a XHR request it will just render current
+/ template without any layouting. Then if you use code
+/ "= block(:main)" instead of "- block(:main)", it will
+/ actually returns result of the block(:main) into the
+/ template. This way you are agnostic to XHR/non-XHR
+/ requests, simply return wrapped HTML or just the
+/ required chunk depending on the type of request.
+- extends "base.html" # unless request.ajax?
+
+/ Oh yeah you can access the value and modify it as you like!
+- block(:scripts).unshift("mootools-core.js")
+
+/ You might thing that the following solution might work
+/ as well, but it won't, because in this case it'd be the
+/ default value and default value is used just in case it
+/ won't get any value in the child template.
+/- block(:scripts, block(:scripts) + ["mootools-core"])
+
+/ However there's the extend_block helper which
+/ will rewrite the value from the child template:
+/- extend_block(:scripts, block(:scripts) + ["mootools-core"])
+
+/ Another one is enhance_block which does the same,
+/ but unlike the extend_block helper, it doesn't
+/ fail in case the block isn't defined yet.
+
+/ And you can also clear block using clear_block(name).
+
+- block(:main) do
+  %h1 Welcome to my cool blog!
+  = block(:post)
