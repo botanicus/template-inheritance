@@ -1,0 +1,9 @@
+/*.gem
+
+.DS_Store
+.cache
+.yardoc
+
+script/*
+.bundle
+.rvmrc
