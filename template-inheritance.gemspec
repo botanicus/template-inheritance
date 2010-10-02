@@ -5,7 +5,7 @@ require "base64"
 
 Gem::Specification.new do |s|
   s.name = "template-inheritance"
-  s.version = "0.0.0.0.0.0.0.0.1"
+  s.version = "0.1"
   s.authors = ["Jakub Šťastný aka Botanicus"]
   s.homepage = "http://github.com/botanicus/template-inheritance"
   s.summary = ""
