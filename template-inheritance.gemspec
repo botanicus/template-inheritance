@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
 
   # dependencies
   s.add_dependency "tilt"
+  s.add_dependency "haml"
 
   # begin
   #   require "changelog"
