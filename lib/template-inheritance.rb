@@ -67,7 +67,7 @@ module TemplateInheritance
     def fullpath
       @fullpath ||= begin
         if self.path.match(/^(\/|\.)/) # /foo or ./foo
-          Dir[self.path, "#{self.path}.*"].find {|file| !File.directory?(file)}
+          find_file(self.path, "#{self.path}.*")
         else
           self.find_in_paths
         end
@@ -104,10 +104,18 @@ module TemplateInheritance
 
     protected
     def find_in_paths
-      self.class.paths.each do |directory|
-        path = File.join(directory, self.path)
-        return Dir[path, "#{path}.*"].find {|file| !File.directory?(file)}
+      self.class.paths.inject(nil) do |real, directory|
+        if real.nil?
+          path = File.join(directory, self.path)
+          find_file(path, "#{path}.*")
+        else
+          real
+        end
       end
+    end
+
+    def find_file(one, other)
+      alternatives.find { |file| File.file?(file) }
     end
 
     def snake_case(string)
