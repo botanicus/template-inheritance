@@ -23,6 +23,7 @@ module TemplateInheritance
 
   class TemplateNotFound < StandardError
     def initialize(message = "Template not found")
+      super(message)
     end
   end
 
