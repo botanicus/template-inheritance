@@ -115,6 +115,7 @@ module TemplateInheritance
     end
 
     def find_file(one, other)
+      alternatives = Dir[one, other]
       alternatives.find { |file| File.file?(file) }
     end
 
