@@ -1,8 +1,6 @@
 # encoding: utf-8
 
 module TemplateInheritance
-  SubtemplateNotFound = Class.new(StandardError)
-
   module TemplateHelpers
     def self.extended(scope)
       class << scope
@@ -103,8 +101,6 @@ module TemplateInheritance
       template = TemplateInheritance::Template.new(full_path, self) # self is scope
       self.template = original_template
       return template.render(context)
-    rescue TemplateInheritance::TemplateNotFound.new(path)
-      raise SubtemplateNotFound, "Template #{path} doesn't exist in #{full_path}"
     end
 
     # partial "products/list"

@@ -88,7 +88,7 @@ module TemplateInheritance
 
     # @since 0.0.2
     def render(context = Hash.new)
-      raise TemplateNotFound.new("Template #{self.path} wasn't found in these paths: #{self.class.paths.inspect}") if self.fullpath.nil?
+      raise TemplateNotFound.new(self.path) if self.fullpath.nil?
       TemplateInheritance.logger.info("Rendering template #{self.path} with context keys #{context.keys.inspect}")
       self.scope.context = self.context = context # so we can access context in the scope object as well
       value = self.template.render(self.scope, context)
