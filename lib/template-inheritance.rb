@@ -22,8 +22,8 @@ module TemplateInheritance
   end
 
   class TemplateNotFound < StandardError
-    def initialize(message = "Template not found")
-      super(message)
+    def initialize(relative_path)
+      super("Template #{relative_path} not found in #{Template.paths.inspect}")
     end
   end
 

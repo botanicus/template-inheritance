@@ -103,7 +103,7 @@ module TemplateInheritance
       template = TemplateInheritance::Template.new(full_path, self) # self is scope
       self.template = original_template
       return template.render(context)
-    rescue Exceptions::TemplateNotFound # FIXME: this doesn't work
+    rescue TemplateInheritance::TemplateNotFound(path)
       raise SubtemplateNotFound, "Template #{path} doesn't exist in #{full_path}"
     end
 
