@@ -13,6 +13,16 @@ template = TemplateInheritance::Template.new("site/post.html.haml")
 template.render(post: post)
 </pre>
 
+h2. In Padrino
+
+<pre>
+require "template-inheritance/adapters/padrino"
+
+class Foo &amp; Padrino::Application
+  register TemplateInheritance::Rendering
+end
+</pre>
+
 h1. Haml Extensions
 
 <pre>
