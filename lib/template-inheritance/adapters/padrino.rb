@@ -25,8 +25,9 @@ module TemplateInheritance::Rendering
   end
 
   # TODO: support options for Haml.
-  # NOTE: block does nothing.
+  # NOTE: block does nothing, it's for builder etc, not useful for Haml.
   # FIXME: locals doesn't work because we don't get them from Padrino.
+  # TODO: no support for render(_, data) i. e. render { :a => 1, :b => 2, :c => 3 }
   include Module.new {
     def render(_, path, options, locals, &block)
       base_dir = options[:views] || settings.views || "./views"
