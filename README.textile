@@ -23,6 +23,8 @@ class Foo &amp; Padrino::Application
 end
 </pre>
 
+Also if you are on Padrino Git HEAD or Padrino 0.9.29, you have to set @SKIP_PADRINO_RENDERING@ to @true@ _before Padrino is loaded_. It's because of a "bug in Padrino":https://github.com/padrino/padrino-framework/issues/541.
+
 h1. Haml Extensions
 
 <pre>
