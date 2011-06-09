@@ -1,5 +1,6 @@
 # encoding: utf-8
 
+require "haml"
 require "template-inheritance/exts/tilt"
 require "template-inheritance/helpers"
 
