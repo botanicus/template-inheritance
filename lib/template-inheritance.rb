@@ -94,13 +94,7 @@ module TemplateInheritance
       self.scope.context = self.context = context # so we can access context in the scope object as well
       value = self.template.render(self.scope, context)
       TemplateInheritance.logger.debug("Available blocks: #{self.blocks.keys.inspect}")
-      if self.supertemplate
-        TemplateInheritance.logger.debug("Extends call: #{self.supertemplate}")
-        supertemplate = self.class.new(self.supertemplate, self.scope)
-        supertemplate.blocks = self.blocks
-        return supertemplate.render(context)
-      end
-      value
+      self.supertemplate ? render_supertemplate : value
     end
 
     protected
@@ -113,6 +107,18 @@ module TemplateInheritance
           real
         end
       end
+    end
+
+    def instantiate_supertemplate
+      supertemplate = self.class.new(self.supertemplate, self.scope)
+      supertemplate.blocks = self.blocks
+      supertemplate
+    end
+
+    def render_supertemplate
+      TemplateInheritance.logger.debug("Extends call: #{self.supertemplate}")
+      supertemplate = instantiate_supertemplate
+      return supertemplate.render(context)
     end
 
     def find_file(one, other)

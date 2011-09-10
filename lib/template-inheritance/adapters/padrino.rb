@@ -7,6 +7,13 @@ require "padrino-core/application/rendering"
 module TemplateInheritance
   class Template
     attr_accessor :padrino_views_directory
+
+    def instantiate_supertemplate
+      supertemplate = self.class.new(self.supertemplate, self.scope)
+      supertemplate.padrino_views_directory = self.padrino_views_directory
+      supertemplate.blocks = self.blocks
+      supertemplate
+    end
   end
 
   module TemplateHelpers
