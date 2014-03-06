@@ -7,7 +7,7 @@ module TemplateInheritance
     # Tilt::HamlTemplate.options[:default_attributes] = {script: {type: "text/javascript"}, form: {method: "POST"}}
     module Haml
       def self.included(klass)
-        klass.send(:remove_method, :initialize_engine)
+        klass.send(:remove_method, :initialize_engine) if klass.respond_to?(:initialize_engine)
         def klass.options
           @options ||= Hash.new
         end
