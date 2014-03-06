@@ -7,7 +7,7 @@ h1. Usage
 <pre>
 require "template-inheritance"
 
-TemplateInheritance::Template.paths &lt;&lt; File.expand_path("..", __FILE__)
+TemplateInheritance::Template.paths << File.expand_path("..", __FILE__)
 
 template = TemplateInheritance::Template.new("site/post.html.haml")
 template.render(post: post)
